@@ -1,4 +1,5 @@
 #1 PREREQUISITES
+
 ##1 installing node
 
 If you have homebrew installed it's as simple as
@@ -38,7 +39,7 @@ if you want to write your own tests. put the tests in test.js or create your own
 
 
 #3 BUILDING
-##1 running the buildscript
+
 All the options i wanted/added are in app.build.js.
 You can open that up and look at some of the options in there and play with them.
 Once you're happy with those settings go to the root folder of my project and do
