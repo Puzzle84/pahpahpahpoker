@@ -27,7 +27,7 @@ requirejs(['game', 'player', 'table', 'card', 'deck', 'dealer'], function   (g, 
       done();
     });
 
-    it('Gamne should fully run ', function (done) {
+    it('Game should fully run ', function (done) {
       var game = new g.game();
       game.init();
 
