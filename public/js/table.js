@@ -52,7 +52,9 @@ define(["player", "dealer", "exports"], function(p, d, exports) {
             for(var i = 0; i < dealtCards.length; i++)
             {
                 var dealerDiv = $('#'+this.Name +' .dealer .status');
-                dealerDiv.append('<div class=card><span>'+dealtCards[i].getSuit() + ' ' + dealtCards[i].getValue() + '</span></div>');
+                var suit      = dealtCards[i].getSuit();
+                var value     = dealtCards[i].getValue();
+                dealerDiv.append('<div class="card '+ suit.toLowerCase() + '"><span>'+ suit + ' ' + value + '</span></div>');
             }
             var newOpen = this.opencards.concat(dealtCards);
             this.opencards = newOpen;

@@ -45,9 +45,9 @@ define(["player", "table", "exports"], function(p, t, exports) {
                 newTable.init(newTableID, name, minbet, maxbet);
                 this.tables.push(newTable);
 
-                $('#tables').append('<div class=room id=' + newTable.getName() + '><span>' + newTable.getName() +'</span><br>');
+                $('#tables').append('<div class=room id=' + newTable.getName() + '><div class=roomname>' + newTable.getName() +'</div>');
 
-                $('#' +newTable.getName()).append('<div class=dealer></div>');
+                $('#' +newTable.getName()).append('<div class=dealer><div class=dealername>Dealer</div></div>');
                 var dealerDiv = $('#' +newTable.getName()+ ' .dealer');
                 dealerDiv.append('<div class=status></div>');
 
@@ -99,7 +99,8 @@ define(["player", "table", "exports"], function(p, t, exports) {
 
         this.joinTable = function (table, player) {
             player.joinTable(table);
-            $('#'+table.getName() + ' .players').append('<div class="player" id="'+player.getName()+'"><span>' + player.getName() + '</span></div>');
+            $('#'+table.getName() + ' .players').append('<div class="player" id="'+player.getName()+'"></div>');
+            $('#'+table.getName() + ' .players #' +player.getName()).append('<div class=playername><span>' + player.getName() + '</span></div>');
             table.addPlayer(player);
         };
 

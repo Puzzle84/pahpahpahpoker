@@ -37,13 +37,13 @@ define(["card", "exports"], function(c, exports) {
             this.flush();
             this.cards = receivedHand;
 
-            var cardsdiv = $('#'+this.currenttable.getName() +' .players #' +this.Name).append('<div class="cards"></div>');
-
+            $('#'+this.currenttable.getName() +' .players #' +this.Name).append('<div class="cards"></div>');
+            var cardsdiv = $('#'+this.currenttable.getName() +' .players #' +this.Name+ ' .cards');
             for(var i = 0; i < this.cards.length; i++)
             {
                 var suit = this.cards[i].getSuit();
                 var value = this.cards[i].getValue();
-                cardsdiv.append('<span class=card>' + suit + ' ' + value +'</span><br>');
+                cardsdiv.append('<span class="card ' + suit.toLowerCase() + '">' + suit + ' ' + value +'</span>');
             }
         };
 
