@@ -16,10 +16,12 @@ requirejs.config({
 requirejs(['jquery', 'tools', 'game'],
 function   ($, t, g) {
      $(function() {
-        $('body').css({"background-color": "red"});
+        //
     });
 
     // create a new instance of showcase.
     var game = new g.game();
     game.init();
+
+    game.gameTest();
 });

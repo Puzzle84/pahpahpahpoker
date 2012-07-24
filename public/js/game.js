@@ -13,8 +13,8 @@ define(["player", "table", "exports"], function(p, t, exports) {
             admin.init(this.players.length, "Admin", 0);
             this.addPlayer(admin);
 
-            this.addTable("Rookie Room", 1, 100);
-            this.addTable("Pro Corner", 100, 1000);
+            this.addTable("Rookie_Room", 1, 100);
+            this.addTable("Pro_Corner", 100, 1000);
 
             var bob = new p.player();
             bob.init(this.players.length, "Bob", 1000);
@@ -44,7 +44,14 @@ define(["player", "table", "exports"], function(p, t, exports) {
                 var newTable = new t.table();
                 newTable.init(newTableID, name, minbet, maxbet);
                 this.tables.push(newTable);
-                console.log('table added: ' + newTable.getName());
+
+                $('#tables').append('<div class=room id=' + newTable.getName() + '><span>' + newTable.getName() +'</span><br>');
+
+                $('#' +newTable.getName()).append('<div class=dealer></div>');
+                var dealerDiv = $('#' +newTable.getName()+ ' .dealer');
+                dealerDiv.append('<div class=status></div>');
+
+                $('#' +newTable.getName()).append('<div class=players></div>');
             }
         };
 
@@ -65,8 +72,8 @@ define(["player", "table", "exports"], function(p, t, exports) {
         {
             if(this.running){
                 this.players.push(player);
+                $('#players').append('<div class="player" id="'+player.getName()+'"><span>' + player.getName() + '</span></div>');
             }
-            console.log('player: ' + player.getName() + ' added to game');
         };
 
         this.removePlayer = function(player)
@@ -92,6 +99,7 @@ define(["player", "table", "exports"], function(p, t, exports) {
 
         this.joinTable = function (table, player) {
             player.joinTable(table);
+            $('#'+table.getName() + ' .players').append('<div class="player" id="'+player.getName()+'"><span>' + player.getName() + '</span></div>');
             table.addPlayer(player);
         };
 

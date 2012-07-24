@@ -37,33 +37,36 @@ define(["table", "player", "deck", "card", "exports"], function(p, t, d, c, expo
             if(this.active === true){
                 this.deck.cutDeck();
                 // Initial Hand
-                for(var player = 0; player < this.table.findPlayersStillPlaying().length; player++)
+                var playersStillPlaying = this.table.findPlayersStillPlaying();
+                for(var player = 0; player < playersStillPlaying.length; player++)
                 {
-                    console.log('Player #'+ player + ':');
                     var hand = this.dealCards(2);
-                    var currentPlayer = this.table.findPlayersStillPlaying()[player];
+                    var currentPlayer = playersStillPlaying[player];
                     currentPlayer.receiveHand(hand);
                 }
 
-                console.log('Burn:');
+                var dealerDiv = $('#'+this.table.getName() +' .dealer .status');
+
+                dealerDiv.append('<div class=event><span>Burn a card!</span></div>');
+
                 this.burnCard();
 
                 //Flop
-                console.log('Flop:');
+                dealerDiv.append('<div class=event><span>Flop!</span></div>');
                 this.addOpenCards(3);
 
-                console.log('Burn:');
+                dealerDiv.append('<div class=event><span>Burn a card!</span></div>');
                 this.burnCard();
 
                 // Turn
-                console.log('Turn:');
+                dealerDiv.append('<div class=event><span>Turn!</span></div>');
                 this.addOpenCards(1);
 
-                console.log('Burn:');
+                dealerDiv.append('<div class=event><span>Burn a card!</span></div>');
                 this.burnCard();
 
                 // River
-                console.log('River:');
+                dealerDiv.append('<div class=event><span>River!</span></div>');
                 this.addOpenCards(1);
                 this.active = false;
             }
@@ -110,7 +113,7 @@ define(["table", "player", "deck", "card", "exports"], function(p, t, d, c, expo
             for(var player = 0; player < this.table.Players; player++)
             {
                 var currentPlayer = this.table.getPlayers()[player];
-                var stack = this.table.getOpenCards(currentPlayer.showHand()).concat().sort();
+                //var stack = this.table.getOpenCards(currentPlayer.showHand()).concat().sort();
 
                 if(true){
 

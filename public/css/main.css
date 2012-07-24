@@ -1,0 +1,79 @@
+@import url("reset.css");
+
+#game {
+    width: 960px;
+    margin: auto;
+}
+
+.room {
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #DDD;
+    display: block;
+    position: relative;
+    margin: 5px;
+}
+
+.dealer {
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #AAA;
+    display: block;
+    position: relative;
+    margin: 5px;
+}
+
+.status {
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #876;
+    display: block;
+    position: relative;
+    margin: 5px;
+}
+
+.event {
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #678;
+    display: block;
+    position: relative;
+    margin: 5px;
+}
+
+.card {
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #888;
+    display: block;
+    position: relative;
+    margin: 5px;
+}
+
+.players, #players {
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #ACA;
+    display: block;
+    position: relative;
+    margin: 5px;
+}
+
+.player, #players .player {
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #ABA;
+    display: block;
+    position: relative;
+    margin: 5px;
+}
+
+#players {
+    padding: 2px;
+    margin: 2px;
+}
+
+#players .player {
+    padding: 2px;
+    margin: 2px;
+}

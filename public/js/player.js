@@ -36,6 +36,15 @@ define(["card", "exports"], function(c, exports) {
         this.receiveHand = function (receivedHand){
             this.flush();
             this.cards = receivedHand;
+
+            var cardsdiv = $('#'+this.currenttable.getName() +' .players #' +this.Name).append('<div class="cards"></div>');
+
+            for(var i = 0; i < this.cards.length; i++)
+            {
+                var suit = this.cards[i].getSuit();
+                var value = this.cards[i].getValue();
+                cardsdiv.append('<span class=card>' + suit + ' ' + value +'</span><br>');
+            }
         };
 
         this.showHand = function (){

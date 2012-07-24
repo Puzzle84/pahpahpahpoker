@@ -57,7 +57,6 @@ define(["card", "exports"], function(c, exports) {
         this.getTopCard = function() {
             var topCard = this.cards.shift();
             this.usedcards.push(topCard);
-            console.log("Card suit: " + topCard.getSuit() + " | Card value: " + topCard.getValue());
             return topCard;
         };
 

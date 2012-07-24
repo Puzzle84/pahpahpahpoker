@@ -48,6 +48,12 @@ define(["player", "dealer", "exports"], function(p, d, exports) {
         };
 
         this.addOpenCards = function (dealtCards) {
+
+            for(var i = 0; i < dealtCards.length; i++)
+            {
+                var dealerDiv = $('#'+this.Name +' .dealer .status');
+                dealerDiv.append('<div class=card><span>'+dealtCards[i].getSuit() + ' ' + dealtCards[i].getValue() + '</span></div>');
+            }
             var newOpen = this.opencards.concat(dealtCards);
             this.opencards = newOpen;
         };
@@ -75,31 +81,38 @@ define(["player", "dealer", "exports"], function(p, d, exports) {
 
         this.addPlayer = function(player){
             this.players.push(player);
-            console.log(player.getId() + '#: player ' + player.getName() + ' added to table: ' + this.getName());
+            var statusDiv = $('#'+this.getName() +'.status');
+            statusDiv.append('<span>' + player.getName() + ' joined!</span>');
+
             if(this.players.length > 1 )
             {
                 if(this.dealer.getDeck().getCards().length === 0)
                 {
-                    console.log('enough players dealer initiated');
+                    statusDiv.append('<span>enough players dealer initiated!</span>');
                     this.dealer.init();
                 }
                 else
                 {
-                    console.log('enough players dealer actived');
+                    statusDiv.append('<span>enough players dealer re-activated!</span>');
                     this.dealer.resume();
                 }
             }
             else
             {
-                console.log('not enough players dealer paused');
+                statusDiv.append('<span>not enough players dealer paused!</span>');
                 this.dealer.pause();
             }
         };
 
         this.removePlayer = function(player){
+            var statusDiv = $('#'+this.getName() +'.status');
+            statusDiv.append('<span>' + player.getName() + ' left!</span>');
+
             this.players.pop(player);
+
             if(this.checkIfTableIsEmpty())
             {
+                statusDiv.append('<span>table is empty!</span>');
                 this.removeTable();
             }
         };
@@ -110,7 +123,6 @@ define(["player", "dealer", "exports"], function(p, d, exports) {
             {
                 if(this.players[i].playing){
                     playersStillPlaying.push(this.players[i]);
-                    console.log(this.players[i].getName() + ' is still playing');
                 }
             }
 
