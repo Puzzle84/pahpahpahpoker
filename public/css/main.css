@@ -70,6 +70,7 @@ body {
     position: relative;
     margin: 7px;
     width: 115px;
+    text-align: center;
 }
 
 .card {
@@ -80,6 +81,7 @@ body {
     position: relative;
     margin: 7px;
     width: 115px;
+    text-align: center;
 }
 
 .hearts, .diamonds {

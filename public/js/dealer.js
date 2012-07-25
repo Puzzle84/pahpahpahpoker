@@ -69,6 +69,8 @@ define(["table", "player", "deck", "card", "exports"], function(p, t, d, c, expo
                 dealerDiv.append('<div class=event><span>River!</span></div>');
                 this.addOpenCards(1);
                 this.active = false;
+
+                this.score();
             }
         };
 
@@ -107,41 +109,245 @@ define(["table", "player", "deck", "card", "exports"], function(p, t, d, c, expo
         };
 
         this.score = function () {
-            var first = null;
-            var second = null;
+            var first = null,
+                second = null,
+                tablePlayers = this.table.findPlayersStillPlaying(),
+                openCards = this.table.getOpenCards();
 
-            for(var player = 0; player < this.table.Players; player++)
+            for(var player = 0; player < tablePlayers.length; player++)
             {
-                var currentPlayer = this.table.getPlayers()[player];
-                //var stack = this.table.getOpenCards(currentPlayer.showHand()).concat().sort();
 
-                if(true){
+                var currentPlayer = tablePlayers[player],
+                    stack = openCards.concat(currentPlayer.showHand()).sort(this.cardComperator),
+                    lastval = null,
+                    lastcheckedval = null,
+                    flush = null,
+                    highCard = 2,
+                    hand = 0,
+                    pair = false,
+                    twopair = false,
+                    threeofakind = false;
 
-                }
-                else{
-                    var highCard = this.findHighestCard(currentPlayer);
+                for(var i = 0; i < stack.length; i++){
 
-                    if(true)
+                    flush = this.findFlush(stack);
+
+                    if(flush === 9)
                     {
+                        if(hand < 9)
+                        {
+                            hand = 9;
+                        }
+                    }
+                    else if(flush === 8)
+                    {
+                        if(hand < 8)
+                        {
+                            hand = 8;
+                        }
+                    }
+                    else if(flush === 5)
+                    {
+                        if(hand < 5)
+                        {
+                            hand = 5;
+                        }
+                    }
+                    else if(flush === 4)
+                    {
+                        if(hand < 4)
+                        {
+                            hand = 4;
+                        }
+                    }
 
+
+                    if((hand < 8) && (stack[i].getValue() !== lastcheckedval)) {
+                        lastcheckedval = stack[i].getValue();
+
+                        var occurences = this.findOccurences(stack[i], stack);
+
+                        if(occurences > 3)
+                        {
+                            if(hand < 7)
+                            {
+                                hand = 7;
+                            }
+                        }
+                        else if(occurences > 2)
+                        {
+                            if(threeofakind === true)
+                            {
+                                if(hand < 6)
+                                {
+                                    hand = 6;
+                                }
+                            }
+                            else if(twopair === true)
+                            {
+                                if(hand < 6)
+                                {
+                                    hand = 6;
+                                }
+                            }
+                            else if(pair === true)
+                            {
+                                if(hand < 6)
+                                {
+                                    hand = 6;
+                                }
+                            }
+
+                            threeofakind = true;
+                            if(hand < 3)
+                            {
+                                hand = 3;
+                            }
+                        }
+                        else if(occurences > 1)
+                        {
+                            if(threeofakind === true)
+                            {
+                                if(hand < 6)
+                                {
+                                    hand = 6;
+                                }
+                            }
+                            else if(pair === true)
+                            {
+                                if(hand < 2)
+                                {
+                                    hand = 2;
+                                }
+                                twopair = true;
+                            }
+
+                            if(hand < 1)
+                            {
+                                hand = 1;
+                            }
+                            pair = true;
+                        }
                     }
                 }
 
-            }
+                highCard = this.findHighestCard(stack);
 
+                var playerDiv = $('#' + this.table.getName() + ' .players #' +currentPlayer.getName());
+                if(hand === 9){
+                    // Royal Flush
+                    playerDiv.append('<span>Royal Flush with the '+ highCard.getFace()  +' of ' + highCard.getSuit() + ' </span>');
+                }
+                else if(hand === 8){
+                    // Straight Flush
+                    playerDiv.append('<span>Royal Flush with the '+ highCard.getFace()  +' of ' + highCard.getSuit() + ' </span>');
+                }
+                else if(hand === 7){
+                    // Four of a kind
+                    playerDiv.append('<span>Four of a kind with the '+ highCard.getFace()  +' of ' + highCard.getSuit() + ' </span>');
+                }
+                else if(hand === 6){
+                    // Fullhouse
+                    playerDiv.append('<span>Fullhouse with the '+ highCard.getFace()  +' of ' + highCard.getSuit() + ' </span>');
+                }
+                else if(hand === 5){
+                    // Flush
+                    playerDiv.append('<span>Flush with the '+ highCard.getFace()  +' of ' + highCard.getSuit() + ' </span>');
+                }
+                else if(hand === 4){
+                    // Straight
+                    playerDiv.append('<span>Straight with the '+ highCard.getFace()  +' of ' + highCard.getSuit() + ' </span>');
+                }
+                else if(hand === 3){
+                    // Three of a kind
+                    playerDiv.append('<span>Three of a kind with the '+ highCard.getFace()  +' of ' + highCard.getSuit() + ' </span>');
+                }
+                else if(hand === 2){
+                    // Two Pair
+                    playerDiv.append('<span>Two pair with the '+ highCard.getFace()  +' of ' + highCard.getSuit() + ' </span>');
+                }
+                else if(hand === 1){
+                    // Pair
+                    playerDiv.append('<span>Pair with the '+ highCard.getFace()  +' of ' + highCard.getSuit() + ' </span>');
+                }
+                else{
+                    // Highcard
+                    playerDiv.append('<span>'+ highCard.getFace()  +' of ' + highCard.getSuit() + ' </span>');
+                }
+            }
         };
 
-        this.findHighestCard = function (player){
-            var highest = 2;
-            for(var i = 0; i < this.player.getCards().length; i++)
-            {
-                var currentCard = this.player.getCards()[i].getValue();
-                if(currentCard > highest)
-                {
-                    highest = currentCard;
+        this.cardComperator = function(a,b) {
+          return parseInt(a.getValue(), 10) - parseInt(b.getValue(), 10);
+        };
+
+        this.findFlush = function(stack) {
+            var suits = [[], [], [], []];
+
+            for(var i = 0; i < stack.length; i++){
+                var suit = stack[i].getSuit();
+                if(suit === "Hearts"){
+                    suits[0].push(stack[i]);
+                }
+                else if(suit === "Diamonds"){
+                    suits[1].push(stack[i]);
+                }
+                else if(suit === "Clubs"){
+                    suits[2].push(stack[i]);
+                }
+                else if(suit === "Spades"){
+                    suits[3].push(stack[i]);
+                }
+            }
+
+            for(var j = 0; j < suits.length; j++){
+                if(suits[j].length === 5){
+                    var sequential = true;
+                    var lastval  = null;
+                    for(var k = 0; k < suits[j].length; k++){
+                        if(lastval === null){
+                            lastval = suits[j][k].getValue();
+                        }
+                        else if((lastval + 1) !== stack[i]){
+                            sequential = false;
+                        }
+                    }
+
+                    if(sequential === true && suits[j][0].getValue() === 10){
+                        return 9;
+                    }
+                    else if(sequential === true){
+                        return 9;
+                    }
+                    else if(sequential !== true){
+                        return 5;
+                    }
+                }
+            }
+        };
+
+        this.findOccurences = function(card, stack){
+            var occurences = 0;
+            for (var i =0; i < stack.length; i++){
+                if(card.getValue() === stack[i].getValue()){
+                    occurences++;
+                }
+            }
+            return occurences;
+        };
+
+        this.findHighestCard = function (stack){
+            var highCard = null;
+            for(var i = 0; i < stack.length; i++){
+                var currentCard = stack[i];
+                if(highCard === null){
+                    highCard = currentCard;
+                }
+                else if(currentCard.getValue() > highCard.getValue()){
+                    highCard = currentCard;
                 }
              }
-             return highest;
+             return highCard;
         };
     }
     exports.dealer = Dealer;

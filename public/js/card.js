@@ -28,6 +28,22 @@ define(["exports"], function(exports) {
         this.getLast = function (){
             return this.last;
         };
+        this.getFace = function(){
+            switch(this.val)
+            {
+                case 11:
+                    return "Jack";
+                case 12:
+                    return "Queen";
+                case 13:
+                    return "King";
+                case 14:
+                    return "Ace";
+                default:
+                    return this.val;
+            }
+        };
+
     }
     exports.card = Card;
 });

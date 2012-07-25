@@ -42,8 +42,8 @@ define(["card", "exports"], function(c, exports) {
             for(var i = 0; i < this.cards.length; i++)
             {
                 var suit = this.cards[i].getSuit();
-                var value = this.cards[i].getValue();
-                cardsdiv.append('<span class="card ' + suit.toLowerCase() + '">' + suit + ' ' + value +'</span>');
+                var value = this.cards[i].getFace();
+                cardsdiv.append('<span class="card ' + suit.toLowerCase() + '">' + value + ' of ' + suit +'</span>');
             }
         };
 

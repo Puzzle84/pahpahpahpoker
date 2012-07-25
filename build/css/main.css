@@ -111,6 +111,7 @@ body {
     position: relative;
     margin: 7px;
     width: 115px;
+    text-align: center;
 }
 .card {
     border: 1px solid black;
@@ -120,6 +121,7 @@ body {
     position: relative;
     margin: 7px;
     width: 115px;
+    text-align: center;
 }
 .hearts, .diamonds {
     background-color: #b22222;

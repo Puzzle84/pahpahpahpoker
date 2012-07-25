@@ -14,14 +14,14 @@ define(["card", "exports"], function(c, exports) {
         this.fillDeck = function (){
             for(var i = 0; i < this.suits.length; i++)
             {
-                for(var j = 2; j <= 13; j++)
+                for(var j = 2; j <= 14; j++)
                 {
                     // new Card(id, suit, value, firstCard, lastCard)
                     var newCard = new c.card();
                     if(j === 2 ) {
                         this.addCard(this.suits[i], j, true, false);
                     }
-                    else if (j === 13) {
+                    else if (j === 14) {
                         this.addCard(this.suits[i], j, false, true);
                     }
                     else {
