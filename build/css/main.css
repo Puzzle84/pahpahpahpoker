@@ -122,6 +122,9 @@ body {
     margin: 7px;
     width: 115px;
     text-align: center;
+    color: white;
+    font-weight:bold;
+    font-size: 12px;
 }
 .hearts, .diamonds {
     background-color: #b22222;
