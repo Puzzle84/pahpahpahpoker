@@ -129,7 +129,6 @@ define(["table", "player", "deck", "card", "exports"], function(p, t, d, c, expo
                     threeofakind = false;
 
                 for(var i = 0; i < stack.length; i++){
-
                     flush = this.findFlush(stack);
 
                     if(flush === 9)
@@ -160,7 +159,6 @@ define(["table", "player", "deck", "card", "exports"], function(p, t, d, c, expo
                             hand = 4;
                         }
                     }
-
 
                     if((hand < 8) && (stack[i].getValue() !== lastcheckedval)) {
                         lastcheckedval = stack[i].getValue();
@@ -281,8 +279,68 @@ define(["table", "player", "deck", "card", "exports"], function(p, t, d, c, expo
           return parseInt(a.getValue(), 10) - parseInt(b.getValue(), 10);
         };
 
+        this.hasStraight= function (stack)
+        {
+            var first5 = stack.slice(0, 5),
+                sequential = true,
+                lastval  = null;
+
+            for(var i = 0; i < first5.length; i++){
+                if(lastval === null){
+                    lastval = first5[i].getValue();
+                }
+                else if((lastval + 1) !== first5[i]){
+                    sequential = false;
+                }
+            }
+
+            if(sequential === true)
+            {
+                return true;
+            }
+            else{
+                sequential = true;
+                lastval  = null;
+                var middle5 = stack.slice(1,6);
+
+                for(var j = 0; j < middle5.length; j++){
+                    if(lastval === null){
+                        lastval = middle5[j].getValue();
+                    }
+                    else if((lastval + 1) !== middle5[j]){
+                        sequential = false;
+                    }
+                }
+                if(sequential === true)
+                {
+                    return true;
+                }
+                else
+                {
+                    var last5 = stack.slice(2, 7);
+                    sequential = true;
+                    lastval  = null;
+                    for(var k = 0; k < last5.length; k++){
+                        if(lastval === null){
+                            lastval = last5[k].getValue();
+                        }
+                        else if((lastval + 1) !== last5[k]){
+                            sequential = false;
+                        }
+                    }
+                    if(sequential === true)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        };
+
         this.findFlush = function(stack) {
-            var suits = [[], [], [], []];
+            var suits = [[], [], [], []],
+                straight = this.hasStraight(stack);
 
             for(var i = 0; i < stack.length; i++){
                 var suit = stack[i].getSuit();
@@ -302,13 +360,13 @@ define(["table", "player", "deck", "card", "exports"], function(p, t, d, c, expo
 
             for(var j = 0; j < suits.length; j++){
                 if(suits[j].length === 5){
-                    var sequential = true;
-                    var lastval  = null;
+                    var sequential = true,
+                        lastval  = null;
                     for(var k = 0; k < suits[j].length; k++){
                         if(lastval === null){
                             lastval = suits[j][k].getValue();
                         }
-                        else if((lastval + 1) !== stack[i]){
+                        else if((lastval + 1) !== suits[j][k].getValue()){
                             sequential = false;
                         }
                     }
@@ -321,6 +379,10 @@ define(["table", "player", "deck", "card", "exports"], function(p, t, d, c, expo
                     }
                     else if(sequential !== true){
                         return 5;
+                    }
+                    else if(straight === true)
+                    {
+                        return 4;
                     }
                 }
             }
