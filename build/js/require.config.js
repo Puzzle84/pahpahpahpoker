@@ -1,0 +1,1 @@
+requirejs.config({baseUrl:"js",paths:{libs:"libs",vendor:"vendor",jquery:"./libs/jquery-1.7.2"}}),require(["jquery"],function(e){require(["main"])})

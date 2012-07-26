@@ -1,4 +1,4 @@
-define(["player", "table", "exports"], function(p, t, exports) {
+define(['player', 'table', 'exports'], function(p, t, exports) {
     function Game(){
         this.players = [];
         this.tables = [];

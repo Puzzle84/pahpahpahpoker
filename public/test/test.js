@@ -1,4 +1,4 @@
-requirejs(['game', 'player', 'table', 'card', 'deck', 'dealer'], function   (g, p, t, c, d , dl) {
+require(['game', 'player', 'table', 'card', 'deck', 'dealer', 'libs/jquery-1.7.2'], function   (g, p, t, c, d , dl, $) {
   describe('Game', function () {
     it('Game should exist ', function (done) {
       var game = new g.game();
