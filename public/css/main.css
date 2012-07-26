@@ -20,7 +20,7 @@ body {
 .room {
     border: 1px solid black;
     padding: 7px;
-    background-color: steelblue ;
+    background-color: steelblue;
     display: block;
     position: relative;
     margin: 7px;

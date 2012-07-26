@@ -18,6 +18,7 @@ js/tools.js
 js/card.js
 js/player.js
 js/deck.js
+js/dealer.logic.js
 js/dealer.js
 js/table.js
 js/game.js

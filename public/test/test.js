@@ -1,4 +1,3 @@
-
 requirejs(['game', 'player', 'table', 'card', 'deck', 'dealer'], function   (g, p, t, c, d , dl) {
   describe('Game', function () {
     it('Game should exist ', function (done) {

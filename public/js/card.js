@@ -43,7 +43,6 @@ define(["exports"], function(exports) {
                     return this.val;
             }
         };
-
     }
     exports.card = Card;
 });
