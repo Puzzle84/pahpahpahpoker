@@ -1,1 +1,0 @@
-Array.prototype.shuffle=function(){var e=this.length,t,n,r;if(e===0)return!1;while(--e)t=Math.floor(Math.random()*(e+1)),n=this[e],r=this[t],this[e]=r,this[t]=n;return this}
