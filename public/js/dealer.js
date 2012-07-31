@@ -1,3 +1,8 @@
+if (typeof define !== 'function') {
+  var define = require('libs/amdefine')(module);
+}
+
+
 define(["table", "player", "deck", "dealer.logic", "card", "exports"], function(p, t, d, dl, c, exports) {
     function Dealer(){
         this.ID = null;

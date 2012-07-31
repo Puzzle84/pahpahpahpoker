@@ -1,4 +1,4 @@
-require(['game', 'player', 'table', 'card', 'deck', 'dealer', 'dealer.logic', 'libs/jquery-1.7.2'], function   (g, p, t, c, d, dl, dll, $) {
+require(['game', 'player', 'table', 'card', 'deck', 'dealer', 'dealer.logic', "libs/jquery-1.7.2"], function   (g, p, t, c, d, dl, dll, $) {
   describe('Client', function () {
 
     //Game object
@@ -102,7 +102,7 @@ require(['game', 'player', 'table', 'card', 'deck', 'dealer', 'dealer.logic', 'l
 
   // Server object
   describe('Server', function () {
-    it('random test to show tests can fail ', function (done) {
+    it('Random test to show tests can fail ', function (done) {
         expect(1 + 1).to.equal(11);
         done();
       });

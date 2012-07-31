@@ -3,7 +3,7 @@
     <title>Mocha</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="lib/browser/style.css" />
-    <script src="../../public/js/libsjquery-1.7.2.js" type="text/javascript"></script>
+    <script src="../public/js/libs/jquery-1.7.2.js" type="text/javascript"></script>
     <script src="./lib/mocha.js"></script>
     <script src="./lib/expect.js"></script>
     <script src="../public/js/tools.js"></script>
@@ -16,6 +16,7 @@
     <script src="../public/js/libs/require.js"></script>
     <script>
       (function(){
+
         requirejs.config({
             //By default load any module IDs from js/libs
             baseUrl: '../public/js',
@@ -27,7 +28,8 @@
             paths: {
                 libs: 'libs',
                 vendor: 'vendor'
-            }
+            },
+            nodeRequire: require
         });
       })();
     </script>

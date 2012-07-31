@@ -10,7 +10,8 @@ requirejs.config({
         libs: 'libs',
         vendor: 'vendor',
         jquery: './libs/jquery-1.7.2'
-    }
+    },
+    nodeRequire: require
 });
 
 require(

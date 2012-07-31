@@ -1,3 +1,8 @@
+if (typeof define !== 'function') {
+  var define = require('libs/amdefine')(module);
+}
+
+
 define(["card", "exports"], function(c, exports) {
     function Player(){
         this.ID    = null;

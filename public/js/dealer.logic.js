@@ -1,3 +1,8 @@
+if (typeof define !== 'function') {
+  var define = require('libs/amdefine')(module);
+}
+
+
 define(["table", "deck", "exports"], function(t, d, exports) {
     function Logic(){
 

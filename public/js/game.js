@@ -1,3 +1,8 @@
+if (typeof define !== 'function') {
+  var define = require('libs/amdefine')(module);
+}
+
+
 define(['player', 'table', 'exports'], function(p, t, exports) {
     function Game(){
         this.players = [];
