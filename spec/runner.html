@@ -35,11 +35,11 @@
     <script>
       onload = function(){
         var runner = mocha.run();
-        runner.globals(['foo', 'bar', 'baz']);
+        // runner.globals(['foo', 'bar', 'baz']);
 
-        runner.on('test end', function(test){
-           console.log(test.fullTitle());
-        });
+        // runner.on('test end', function(test){
+        //    console.log(test.fullTitle());
+        // });
       };
     </script>
   </head>

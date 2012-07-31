@@ -90,10 +90,10 @@ require(['game', 'player', 'table', 'card', 'deck', 'dealer', 'dealer.logic', 'l
 
     //Player object
     describe('player.js', function () {
-      it('Player object exists ', function (done) {
+      it('Player object is of type Player ', function (done) {
         var player = new p.player();
 
-        expect(player).to.not.equal(null);
+        expect(player).to.be.a(p.player);
         done();
       });
     });
