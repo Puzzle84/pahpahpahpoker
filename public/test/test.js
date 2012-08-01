@@ -1,4 +1,4 @@
-require(['game', 'player', 'table', 'card', 'deck', 'dealer', 'dealer.logic', "libs/jquery-1.7.2"], function   (g, p, t, c, d, dl, dll, $) {
+require(['game', 'player', 'table', 'card', 'deck', 'dealer', 'dealer.logic', 'libs/jquery-1.7.2'], function   (g, p, t, c, d, dl, dll, $) {
   describe('Client', function () {
 
     //Game object

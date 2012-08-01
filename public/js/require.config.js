@@ -16,7 +16,7 @@ requirejs.config({
 
 require(
     [
-        "jquery"
+        'jquery'
     ],
     function ($){
         require(['main']);
